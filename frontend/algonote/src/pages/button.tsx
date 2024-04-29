@@ -28,7 +28,6 @@ const ButtonFunction = () => {
         text="검색필터"
         onClick={() => setIsClicked(!isClicked)}
         className="search"
-        initialClicked={false}
       />
       <BookmarkToggle isOff={isOff} onClick={() => setIsOff(!isOff)} />
       <ToggleButton imageSrc={GPT} onClick={() => setCount(count + 1)} />
