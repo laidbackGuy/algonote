@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-app
-        image: tollea1234/backend-app:${BUILD_NUMBER}
+        image: tollea1234/backend-k8s-app:${BUILD_NUMBER}
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -24,8 +24,8 @@ spec:
 
         resources:
           requests:
-            cpu: 440m
-            memory: 1760Mi
+            cpu: 400m
+            memory: 800Mi
           
         lifecycle:
           preStop:
