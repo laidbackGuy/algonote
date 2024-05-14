@@ -36,6 +36,7 @@ public class AuthController {
 
     @GetMapping("/test")
     public ResponseEntity<String> test() {
+        log.info("test");
         return ResponseEntity.ok("test");
     }
 
