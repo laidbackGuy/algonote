@@ -74,6 +74,19 @@ pipeline{
         //         }
         //     }
         // }
+
+        stage('Remove previous images') {
+            steps {
+                script {
+                    def currentBuildNumber = env.BUILD_NUMBER.toInteger()
+                    def imagesToRemove = sh(script: "docker images $repository --format \"{{.Tag}}\" | awk '{if (\$1 < $currentBuildNumber) print \$1}'", returnStdout: true).trim()
+                    if (imagesToRemove) {
+                        sh "docker rmi $repository:${imagesToRemove}"
+                    }
+                }
+            }
+        }
+
         
 
 
