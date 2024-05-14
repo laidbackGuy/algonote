@@ -62,18 +62,18 @@ pipeline{
             }
         }
 
-        stage('Deploy on docker'){
-            steps{
-                dir('backend'){
+        // stage('Deploy on docker'){
+        //     steps{
+        //         dir('backend'){
                     
-                    sh '''
-                        ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker pull $repository:$BUILD_NUMBER"
-                        ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker rm backend-container --force"
-                        ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker run -p 8080:8080 -d --name backend-container $repository:$BUILD_NUMBER"
-                     '''
-                }
-            }
-        }
+        //             sh '''
+        //                 ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker pull $repository:$BUILD_NUMBER"
+        //                 ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker rm backend-container --force"
+        //                 ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker run -p 8080:8080 -d --name backend-container $repository:$BUILD_NUMBER"
+        //              '''
+        //         }
+        //     }
+        // }
         
         stage('Remove previous images') {
             steps {

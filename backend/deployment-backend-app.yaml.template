@@ -20,6 +20,13 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+
+
+        resources:
+          requests:
+            cpu: 440m
+            memory: 1760Mi
+          
         lifecycle:
           preStop:
             exec:
