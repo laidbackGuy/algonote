@@ -26,6 +26,9 @@ spec:
           requests:
             cpu: 400m
             memory: 800Mi
+          limits:
+            cpu: 1200m
+            
           
         lifecycle:
           preStop:
