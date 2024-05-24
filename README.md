@@ -1,11 +1,15 @@
-#  <img src="/uploads/93cca29000ea2b42efdeec893879909f/Group_1437252915.png"  width="30" height="30"/> AlgoNote  
+<img src="https://github.com/laidbackGuy/algonote/assets/139303875/aa95585c-e464-432e-b8c5-936534c7655b" width="400" />
+
+알고노트 : 알고리즘 역량 강화를 위한 나만의 노트
+
 > Samsung Software Academy For Youth 10기  
 > 도메인 : 자율 프로젝트  
 > 개발 기간 : 2024.04.09 ~ 2024.05.20
 
 
 # 🌟 프로젝트 소개
-![algonote_logo](/uploads/b91336887718e1a35acf952ae9c90ca7/Mask_group__1_.png)
+![대지 1@2x-100](https://github.com/laidbackGuy/algonote/assets/139303875/3e3c7b64-0978-462e-b36f-ba03a5d98e5a)
+
 
 **알고리즘을 학습하며 느꼈던 불편한점이 있으신가요?**
 
@@ -64,6 +68,7 @@
 - 해당 제출이력을 바탕으로 오답노트를 작성할 수 있어요.
 <img src="./exec/asset/노트작성-마크다운.png">
 [문제 제출, 노트 작성 화면]
+
 ![문제제출,노트작성](https://github.com/laidbackGuy/Algorithm/assets/139303875/d8e9e2e0-2820-4994-b5af-b5e152b6d84c)
 <br>
 
@@ -71,6 +76,7 @@
 - 궁금한 내용은 챗봇에게 물어볼 수 있어요. 
 <img src="./exec/asset/챗봇.png">
 [챗봇 이용 화면]
+
 ![챗봇](https://github.com/laidbackGuy/Algorithm/assets/139303875/5e9d732b-1403-41a3-a8c2-9035c570515f)
 <br>
 
@@ -84,6 +90,7 @@
 - 이를 통해, 다양한 문제 유형에 대해 꾸준히 학습하세요.
 <img src="./exec/asset/취약알고리즘.png">
 [로그인, 푼 문제 분석, 취약 알고리즘 분석, 문제 추천 화면]
+
 ![로그인,메인,문제추천](https://github.com/laidbackGuy/Algorithm/assets/139303875/c4f4556c-b84e-4003-ad66-85882ba16043)
 <br>
 
