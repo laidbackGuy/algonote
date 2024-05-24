@@ -1,0 +1,104 @@
+pipeline{
+ 
+    environment{
+        repository = 'tollea1234/algonote-backend'
+        DOCKERHUB_CREDENTIALS = credentials('docker') // jenkins에 등록해 놓은 docker hub credentials 이름
+        dockerImage = '' 
+    }
+
+    agent any
+
+    stages{
+
+        stage('Springboot build'){
+            steps{
+                dir('backend'){
+                    sh '''
+                        echo 'Springboot build...'
+                        mkdir -p src/main/resources
+                        cp /var/jenkins_home/env/application.yml ./src/main/resources/application.yml
+                        chmod +x gradlew
+                        ./gradlew clean bootJar
+                    '''
+                }
+            }
+        }
+
+
+        stage('Build docker image'){
+            steps{
+                dir('backend'){
+                    script{
+                        dockerImage = docker.build repository + ":$BUILD_NUMBER"
+                    }
+                }
+            }
+        }
+
+        stage("Docker Hub Login"){
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin' // docker hub 로그인 sh ''
+            }
+        }
+
+        stage("Push our image"){
+            steps{
+                script{
+                    sh "docker push $repository:$BUILD_NUMBER"
+                }
+            }
+        }
+
+         stage('Deploy on Deploy Server'){
+            steps{
+                sh '''
+                    ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker pull tollea1234/algonote-backend:$BUILD_NUMBER"
+                    ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker rm backend-container --force"
+                    ssh -i ~/.ssh/id_rsa ubuntu@k10b203.p.ssafy.io "docker run -p 8080:8080 -d --name backend-container tollea1234/algonote-backend:$BUILD_NUMBER"
+                '''
+            }
+        }
+
+
+        stage('Remove previous images') {
+            steps {
+                script {
+                    def currentBuildNumber = env.BUILD_NUMBER.toInteger()
+                    def imagesToRemove = sh(script: "docker images $repository --format \"{{.Tag}}\" | awk '{if (\$1 < $currentBuildNumber) print \$1}'", returnStdout: true).trim()
+                    if (imagesToRemove) {
+                        sh "docker rmi $repository:${imagesToRemove}"
+                    }
+                }
+            }
+        }
+
+
+
+    }
+
+    post{
+        success {
+        	script {
+                def Author_ID = sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
+                def Author_Name = sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
+                mattermostSend (color: 'good', 
+                message: "빌드 성공: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
+                endpoint: 'https://meeting.ssafy.com/hooks/44qww6fd4bbg3yjh4n67a4a3ce', 
+                channel: 'Jenkins'
+                )
+            }
+        }
+        failure {
+        	script {
+                def Author_ID = sh(script: "git show -s --pretty=%an", returnStdout: true).trim()
+                def Author_Name = sh(script: "git show -s --pretty=%ae", returnStdout: true).trim()
+                mattermostSend (color: 'danger', 
+                message: "빌드 실패: ${env.JOB_NAME} #${env.BUILD_NUMBER} by ${Author_ID}(${Author_Name})\n(<${env.BUILD_URL}|Details>)", 
+                endpoint: 'https://meeting.ssafy.com/hooks/44qww6fd4bbg3yjh4n67a4a3ce', 
+                channel: 'Jenkins'
+                )
+            }
+        }
+    }
+
+}

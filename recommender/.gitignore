@@ -1,0 +1,9 @@
+/Data/
+/rank/*
+/rank2/*
+/divide/*
+/tag/*
+
+*.pyc
+__pycache__/
+.env

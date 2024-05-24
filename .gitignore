@@ -1,1 +1,26 @@
-backend
+###### BE PART ####### 
+## public
+backend/src/main/resources/application.yml
+
+## minwoo
+backend/database/**
+backend/docker-compose.yml
+backend/redis/**
+backend/recommender/solved_problem_history.csv
+backend/jacoco/**
+
+
+
+
+/recommender/Data/*
+/recommender/rank/*
+/recommender/rank2/*
+/recommender/divide/*
+/recommender/tag/*
+backend/src/main/generated/**
+
+
+grading-server/.idea/**
+grading-server/build/**
+grading-server/.gradle/**
+
