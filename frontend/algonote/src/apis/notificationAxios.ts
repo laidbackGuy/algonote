@@ -9,7 +9,7 @@ const getNotificationsApi = () => {
 
 const checkReadNotificationApi = (notificationId: number) => {
   return axiosAuthApi()
-    .post(`/api/notifications/${notificationId}/mark-as-read`)
+    .delete(`/api/notifications/${notificationId}/mark-as-read`)
     .then(() => console.log('읽음 처리 성공'))
     .catch((error) => console.log('읽음 처리 실패:', error))
 }

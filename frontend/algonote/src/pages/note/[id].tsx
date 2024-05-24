@@ -94,6 +94,30 @@ const Note = () => {
     const response = await likeApi(id as string)
     if (response.status === 200) {
       setLikeIsOff(response.data.hearted)
+
+      // 좋아요
+      if (response.data.hearted) {
+        setNoteDetail((prevDetail) => {
+          if (prevDetail) {
+            return {
+              ...prevDetail,
+              heartCnt: prevDetail.heartCnt + 1,
+            }
+          }
+          return prevDetail
+        })
+      } else {
+        // 좋아요 취소
+        setNoteDetail((prevDetail) => {
+          if (prevDetail) {
+            return {
+              ...prevDetail,
+              heartCnt: prevDetail.heartCnt - 1,
+            }
+          }
+          return prevDetail
+        })
+      }
     }
   }
 

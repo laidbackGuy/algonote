@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { v4 as uuidv4 } from 'uuid'
 import s from './Category.module.scss'
 import recommendApi from '@/apis/recommendAxios'
+import MetaHead from '@/components/commons/MetaHead'
 import QuestionListRec from '@/components/commons/QuestionListRec'
 import QuestionListRecTitle from '@/components/commons/QuestionListRecTitle'
 import { getCookie } from '@/utils/cookie'
@@ -154,61 +155,67 @@ const Category = ({ categoryName }: CategoryProps) => {
   }, [])
 
   return (
-    <div
-      className={
-        categoryName === 'math_theory' ? s.firstCategoryCont : s.categoryCont
-      }
-    >
-      {categoryName !== 'math_theory' ? (
-        <hr className={s.divide} id={categoryName} />
-      ) : null}
-      <p className={s.categoryTitle}>{dictionary[categoryName]}</p>
-      {loading ? (
-        <div className={s.loadingCont}>
-          <p>적합한 추천 문제를 선별 중이에요...</p>
-          <div className={s.spinnerCont}>
-            <div className={s.spinner} />
-          </div>
-        </div>
-      ) : (
-        <div>
-          {tags.map((tag, index) => (
-            <div className={s.tagCont} key={uuidv4()}>
-              <div className={s.tagTitleCont}>
-                <Image
-                  src="/images/record/folder.png"
-                  width={24}
-                  height={18}
-                  alt="folder"
-                />
-                <p className={s.tagTitle}>
-                  {dictionary[category[categoryName][index]]}
-                </p>
-              </div>
-              <QuestionListRecTitle />
-              {tag.map((problem: Problem) => (
-                <Link
-                  href={`https://www.acmicpc.net/problem/${problem.id}`}
-                  key={problem.id}
-                  style={{ textDecoration: 'none', color: 'black' }}
-                  target="_blank"
-                >
-                  <div className={s.problem}>
-                    <QuestionListRec
-                      id={problem.id}
-                      title={problem.title}
-                      tier={problem.tier}
-                      acceptedUserCount={problem.accepted_user_count}
-                      averageTries={problem.average_tries}
-                    />
-                  </div>
-                </Link>
-              ))}
+    <>
+      <MetaHead
+        title="내가 푼 문제를 바탕으로 유형별 추천 문제를 알려드려요"
+        description="BPR을 사용하여 개인 맞춤 추천 문제를 선별해줘요"
+      />
+      <div
+        className={
+          categoryName === 'math_theory' ? s.firstCategoryCont : s.categoryCont
+        }
+      >
+        {categoryName !== 'math_theory' ? (
+          <hr className={s.divide} id={categoryName} />
+        ) : null}
+        <p className={s.categoryTitle}>{dictionary[categoryName]}</p>
+        {loading ? (
+          <div className={s.loadingCont}>
+            <p>적합한 추천 문제를 선별 중이에요...</p>
+            <div className={s.spinnerCont}>
+              <div className={s.spinner} />
             </div>
-          ))}
-        </div>
-      )}
-    </div>
+          </div>
+        ) : (
+          <div>
+            {tags.map((tag, index) => (
+              <div className={s.tagCont} key={uuidv4()}>
+                <div className={s.tagTitleCont}>
+                  <Image
+                    src="/images/record/folder.png"
+                    width={24}
+                    height={18}
+                    alt="folder"
+                  />
+                  <p className={s.tagTitle}>
+                    {dictionary[category[categoryName][index]]}
+                  </p>
+                </div>
+                <QuestionListRecTitle />
+                {tag.map((problem: Problem) => (
+                  <Link
+                    href={`https://www.acmicpc.net/problem/${problem.id}`}
+                    key={problem.id}
+                    style={{ textDecoration: 'none', color: 'black' }}
+                    target="_blank"
+                  >
+                    <div className={s.problem}>
+                      <QuestionListRec
+                        id={problem.id}
+                        title={problem.title}
+                        tier={problem.tier}
+                        acceptedUserCount={problem.accepted_user_count}
+                        averageTries={problem.average_tries}
+                      />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   )
 }
 

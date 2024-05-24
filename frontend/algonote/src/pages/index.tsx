@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import s from './main.module.scss'
@@ -9,6 +8,7 @@ import { SimpleButton } from '@/components/commons/Buttons/Button'
 import Radar from '@/components/commons/Main/Radar'
 import Wave from '@/components/commons/Main/Wave'
 // import useNoteStore from '@/stores/note-store'
+import MetaHead from '@/components/commons/MetaHead'
 import { getCookie } from '@/utils/cookie'
 
 interface RecordProps {
@@ -71,21 +71,11 @@ const Main = () => {
   }
   return (
     <>
-      <Head>
-        <title>algonote</title>
-        <meta
-          name="description"
-          content="균형잡힌 알고리즘 공부 알고노트로 시작하세요"
-        />
-        <meta property="og:title" content="algonote" />
-        <meta
-          property="og:description"
-          content="균형잡힌 알고리즘 공부 알고노트로 시작하세요"
-        />
-        <meta property="og:image" content="images/longLogo.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <MetaHead
+        title="균형잡힌 알고리즘 공부 알고노트로 시작하세요"
+        description="수준별 문제 추천과 간단한 정리노트 템플릿 제공"
+        image="/images/loginLogo"
+      />
       <main className={s.main}>
         <div className={s.header}>
           <div className={s.headerSentence}>

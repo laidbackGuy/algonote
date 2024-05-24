@@ -3,11 +3,12 @@ import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
 import '@/styles/globals.scss'
 import Footer from '@/components/commons/Footer'
+import MetaHead from '@/components/commons/MetaHead'
 import NavBar from '@/components/commons/NavBar'
+import LandingNavBar from '@/components/commons/NavBar/landing'
 import NoteNavBar from '@/components/commons/NoteNavBar'
 import SSE from '@/components/commons/Notification/SSE/SSE'
 import { getCookie } from '@/utils/cookie'
-import LandingNavBar from '@/components/commons/NavBar/landing'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
@@ -24,6 +25,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
+      <MetaHead />
       {router.pathname === '/writenote' || router.pathname === '/revisenote' ? (
         <NoteNavBar />
       ) : router.pathname === '/login' || router.pathname === '/signup' ? (
