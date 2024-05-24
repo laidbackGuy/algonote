@@ -148,7 +148,9 @@
 
 <img alt="typescript" src="https://img.shields.io/badge/typescript-3178C6.svg?&style=for-the-badge&logo=TypeScript&logoColor=white">
 <img alt="next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=Next.js&logoColor=white">
-<img alt="zustand" src="https://img.shields.io/badge/zustand-%2320232a.svg?style=for-the-badge&logo=Next.js&logoColor=%2361DAFB">
+<img alt="zustand" src="https://img.shields.io/badge/zustand-EEB63F?style=for-the-badge&logo=react&logoColor=black">
+<img alt="scss" src="https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white">
+<img alt="chart.js" src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chart.js&logoColor=white">
 
  **DataBase**
 
