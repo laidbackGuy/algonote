@@ -1,0 +1,61 @@
+services:
+  grading-server-app-1:
+    container_name: grading-server-app-1
+    # build: .
+    ports:
+      - "18081:8080"
+    # image: lmw7414/grading-server-app
+    image: tollea1234/grading-server-app:${version}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: '512m'
+  grading-server-app-2:
+    container_name: grading-server-app-2
+    # build: .
+    ports:
+      - "18082:8080"
+    # image: lmw7414/grading-server-app
+    image: tollea1234/grading-server-app:${version}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: '512m'
+  grading-server-app-3:
+    container_name: grading-server-app-3
+    # build: .
+    ports:
+      - "18083:8080"
+    # image: lmw7414/grading-server-app
+    image: tollea1234/grading-server-app:${version}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: '512m'
+  grading-server-app-4:
+    container_name: grading-server-app-4
+    # build: .
+    ports:
+      - "18084:8080"
+    # image: lmw7414/grading-server-app
+    image: tollea1234/grading-server-app:${version}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: '512m'
+  grading-server-app-5:
+    container_name: grading-server-app-5
+    # build: .
+    ports:
+      - "18085:8080"
+    # image: lmw7414/grading-server-app
+    image: tollea1234/grading-server-app:${version}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: '512m'
